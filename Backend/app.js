@@ -6,6 +6,8 @@ const mysql = require('mysql2');
 const app=express();
 //create an listener port 
 const port = 4000;
+//middleware to parse JSON request bodies
+app.use(express.json());
 //define database connection parameters
 const dbConfig = {
     host: 'localhost',
@@ -32,6 +34,10 @@ app.get('/',(req,res)=>{
     res.send('Hello World!');
 
 });
+// post request handler to add a new employe 
+app.post('/add-employee',(req,res)=>{
+    console.log(req.body); });
+
 
 app.listen(port,()=>{
     console.log(`Server is running on port http://localhost:${port}`);
