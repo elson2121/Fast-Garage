@@ -36,7 +36,25 @@ app.get('/',(req,res)=>{
 });
 // post request handler to add a new employe 
 app.post('/add-employee',(req,res)=>{
-    console.log(req.body); });
+    console.log(req.body); 
+//write the sql query to insert a data in customer table
+    const sql = 'INSERT INTO employee (first_name,last_name,email,password) VALUES (?,?,?,?)';
+    const {first_name,last_name,email,password} = req.body;
+    //execute the query
+    connection.query(sql,function (err,result){
+        if(err){
+            console.error('Error inserting data:', err);
+            res.status(500).send('Error inserting data');
+            return;
+        }
+        res.status(200).send('Employee added successfully');
+    });
+//send a response back to the client
+
+
+
+
+});
 
 
 app.listen(port,()=>{
