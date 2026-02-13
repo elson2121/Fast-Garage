@@ -57,31 +57,63 @@ app.post('/add-employee', (req, res) => {
 });
 
 
+// Post request handler for login (verifying employee)
+// app.post('/log', (req, res) => {
+//     console.log("Login attempt for:", req.body.email);
 
-// // post request handler to add a new employe 
-// app.post('/add-employee',(req,res)=>{
-//     console.log(req.body); 
-// //write the sql query to insert a data in customer table
-//     const sql = 'INSERT INTO employee (first_name,last_name,email,password) VALUES (?,?,?,?)';
-//     const {first_name,last_name,email,password} = req.body;
-//     //execute the query
-//     connection.query(sql,function (err,result){
-//         if(err){
-//             console.error('Error inserting data:', err);
-//             res.status(500).send('Error inserting data');
-//             console.log("erro ")
-//             return;
+//     // 1. Define the SQL query to find a matching email AND password
+//     const sql = 'SELECT * FROM employee WHERE email = ? AND password = ?';
+    
+//     // 2. Extract email and password from the request body (sent via Postman)
+//     const { email, password } = req.body;
+//     const values = [email, password];
+
+//     // 3. Execute the query
+//     connection.query(sql, values, (err, results) => {
+//         if (err) {
+//             console.error('Database error:', err);
+//             return res.status(500).send('Server error during login');
 //         }
-//         res.status(200).send('Employee added successfully');
-//         console.log("the data is added ")
+
+//         // 4. Check if we found a match (results will be an array)
+//         if (results.length > 0) {
+//             // Success! We found a user with those credentials
+//             console.log("Login successful for:", results[0].first_name);
+//             res.status(200).json({
+//                 message: "Login successful",
+//                 user: results[0] // Sends the user data back to the client
+//             });
+//         } else {
+//             // Fail! No user found with that email/password combination
+//             console.log("Login failed: Invalid credentials");
+//             res.status(401).send('Invalid email or password');
+//         }
 //     });
-// //send a response back to the client
-
-
-
-
 // });
+// Post request handler for login (verifying employee)
+app.post('/log', (req, res) => {
+    const { email, password } = req.body;
+    
+    // This looks for the user in your existing employee table
+    const sql = 'SELECT * FROM employee WHERE email = ? AND password = ?';
+    
+    connection.query(sql, [email, password], (err, results) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).send('Error searching database');
+        }
 
+        // If results.length > 0, it means the email/password match someone in the table
+        if (results.length > 0) {
+            console.log("Login successful!");
+            res.status(200).send('Login successful! Welcome ' + results[0].first_name);
+        } else {
+            // If no match is found
+            console.log("Login failed: Invalid credentials");
+            res.status(401).send('Invalid email or password');
+        }
+    });
+});
 
 
 
