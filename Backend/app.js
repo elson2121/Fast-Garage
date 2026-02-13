@@ -38,24 +38,23 @@ connection.connect((err)=>{
 app.post('/add-employee', (req, res) => {
     console.log(req.body); 
     
-//     const sql = 'INSERT INTO employee (first_name, last_name, email, password) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO employee (first_name, last_name, email, password) VALUES (?, ?, ?, ?)';
     
-//     // 1. Destructure the values from the request body
-//     const { first_name, last_name, email, password } = req.body;
+  // 1. Destructure the values from the request body
+    const { first_name, last_name, email, password } = req.body;
     
-//     // 2. Create an array containing these values in the EXACT same order as the SQL query
-//     const values = [first_name, last_name, email, password];
-
-//     // 3. Pass the 'values' array as the second argument to connection.query
-//     connection.query(sql, values, function (err, result) {
-//         if (err) {
-//             console.error('Error inserting data:', err);
-//             res.status(500).send('Error inserting data');
-//             return;
-//         }
-//         res.status(200).send('Employee added successfully');
-//     });
-// });
+ // 2. Create an array containing these values in the EXACT same order as the SQL query
+ const values = [first_name, last_name, email, password];
+   // 3. Pass the 'values' array as the second argument to connection.query
+   connection.query(sql, values, function (err, result) {
+    if (err) {
+         console.error('Error inserting data:', err);
+       res.status(500).send('Error inserting data');
+            return;
+        }
+        res.status(200).send('Employee added successfully');
+    });
+});
 
 
 
@@ -86,7 +85,7 @@ app.post('/add-employee', (req, res) => {
 
 
 
-})
+
 app.listen(port,()=>{
     console.log(`Server is running on port http://localhost:${port}`);
 });
