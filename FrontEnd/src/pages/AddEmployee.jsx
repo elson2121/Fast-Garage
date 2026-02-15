@@ -1,11 +1,15 @@
 import React from 'react'
 
 function AddEmployee() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <>
-     <h4> Add the Employee </h4>
-     <div>
-      <form action="">
+     <h1> Add the Employee </h1>
+     <div className='form'>
+      <form  action="" onSubmit={handleSubmit}>
       <label htmlFor="fname">First Name:</label>
       <input type="text" id="fname" name="fname" />
       <br />
