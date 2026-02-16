@@ -6,6 +6,15 @@ const mysql = require('mysql2');
 const app=express();
 //create an listener port 
  const port = 4000;
+ //allow all the cors requests form the 
+ app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); 
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
+
  //middleware to parse JSON request bodies
 app.use(express.json());
 // define database connection parameters
