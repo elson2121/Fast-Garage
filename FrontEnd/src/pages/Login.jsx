@@ -9,6 +9,7 @@ function Login() {
     <div>
         
       <h1> Login </h1>
+      <div className='login-container'> 
       <form action="" classname='login' >
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} />
@@ -18,7 +19,7 @@ function Login() {
         <br />
         <button type="submit">Login</button>
       </form>
-      
+      </div>
     </div>
   )
 }
