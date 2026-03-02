@@ -12,10 +12,10 @@ function Login() {
       <div className='login-container'> 
       <form action="" classname='login' >
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} />
+        <input className='pass'type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} />
         <br />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} />
+        <label  htmlFor="password">Password:</label>
+        <input className='pass' type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} />
         <br />
         <button type="submit">Login</button>
       </form>
