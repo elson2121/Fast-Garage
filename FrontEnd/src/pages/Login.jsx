@@ -9,7 +9,7 @@ function Login() {
     <div>
         
       <h1> Login </h1>
-      <form action="">
+      <form action="" classname='login' >
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} />
         <br />
