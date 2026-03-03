@@ -1,18 +1,28 @@
 //import express module
 const express = require('express');
+const cors = require('cors');
  //import mysql2 module
 const mysql = require('mysql2');
 // set up the listener port 
 const app=express();
 //create an listener port 
  const port = 4000;
+//for the the cors the new
+
+app.use(cors({
+    origin: 'http://localhost:5173', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
+allowedHeaders: ['Content-Type'] // Allow these headers
+
+}));
+
  //allow all the cors requests form the 
- app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); 
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
+//  app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*'); 
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
 
 
  //middleware to parse JSON request bodies
@@ -57,11 +67,12 @@ app.post('/add-employee', (req, res) => {
    // 3. Pass the 'values' array as the second argument to connection.query
    connection.query(sql, values, function (err, result) {
     if (err) {
-         console.error('Error inserting data:', err);
-       res.status(500).send('Error inserting data');
-            return;
+            console.error('Error inserting data:', err);
+            // Send JSON error
+            return res.status(500).json({ error: 'Error inserting data' });
         }
-        res.status(200).send('Employee added successfully');
+        // Send JSON success
+        res.status(200).json({ message: 'Employee added successfully' });
     });
 });
 
