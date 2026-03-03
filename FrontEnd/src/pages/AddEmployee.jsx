@@ -11,7 +11,8 @@ function AddEmployee() {
   const [lastName, setLastName] = useState('');
   const [emailaddress, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+ // 1. Create a state to store the success message
+  const [serverMessage, setServerMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +34,8 @@ function AddEmployee() {
     response.then(res => res.json())
       .then(res => {
         console.log(res);
+         // 2. Set the message from the server response
+        setServerMessage("✅ Employee added successfully!");
         //clear the form
         setFirstName('');
         setLastName('');
