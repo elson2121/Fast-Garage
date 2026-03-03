@@ -30,23 +30,36 @@ function AddEmployee() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     };
-    const response = fetch(apiurl, requestOptions);
-    response.then(res => res.json())
+    fetch(apiurl, requestOptions)
+      .then(res => res.json())
       .then(res => {
         console.log(res);
-         // 2. Set the message from the server response
+        // 2. Set the message from the server response
         setServerMessage("✅ Employee added successfully!");
         //clear the form
         setFirstName('');
         setLastName('');
         setEmail('');
         setPassword('');
+        //  Hide the message after 3 seconds
+        setTimeout(() => setServerMessage(''), 3000);
+      })
+      .catch(err => {
+        console.error(err);
+        setServerMessage("❌ Error adding employee");
       });
   };
 
   return (
     <>
       <h1> Add the Employee </h1>
+            {/* 3. Display the message to the user */}
+      {serverMessage && (
+        <div style={{ color: 'green', fontWeight: 'bold', marginBottom: '10px' }}>
+          {serverMessage}
+        </div>
+      )}
+
       <div className='form'>
         <form action="" onSubmit={handleSubmit}>
           <label htmlFor="fname">First Name:</label>
