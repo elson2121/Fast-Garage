@@ -1,1 +1,1 @@
-as you know the money is goes down day to day and the aamount of the money i have now is very low whatn the money i had before the 2 mounth hello this is the mekdi file i have ever seen the cost is now reache  the most  52,000  
+di file i have ever seen the cost is now reache  the most  52,000  
