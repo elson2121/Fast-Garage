@@ -1,1 +1,1 @@
- things ar eocmmet together withe those peopel  
+ together withe those peopel  
