@@ -1,1 +1,1 @@
- together withe those peopel  
+those peopel  
