@@ -1,1 +1,1 @@
-of my life so what is the things are in the folling good  
+so what is the things are in the folling good  
