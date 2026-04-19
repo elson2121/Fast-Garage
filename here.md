@@ -1,1 +1,1 @@
-s are in the folling good  
+ in the folling good  
