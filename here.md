@@ -1,1 +1,1 @@
-hings are in the folling good  
+s are in the folling good  
